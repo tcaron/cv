@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Thomas Caron - Lead Développeur Drupal</title>
+    <meta name="description" content="CV de Thomas Caron, Lead Développeur Drupal.">
     <style>
         :root {
             --primary: #1a1a2e;
@@ -121,6 +122,12 @@
 
         .contact a {
             color: #ffffff;
+        }
+
+        .controls button {
+            min-height: 44px;
+            padding: 10px 15px;
+            cursor: pointer;
         }
 
         .contact span { display: flex; align-items: center; gap: 8px; }
@@ -354,7 +361,7 @@
                     <div class="contact">
                         <span>📧 <a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
                         <span>📱 06 08 36 73 00</span>
-                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank">linkedin.com/in/caronthomas</a></span>
+                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
                         <span>📍 Lens, France</span>
                     </div>
                 </header>
@@ -522,7 +529,7 @@
             </div>
         </article>
 
-        <article class="cv-version" id="cv-en" lang="en">
+        <article class="cv-version" id="cv-en" lang="en" aria-hidden="true">
             <div class="container">
                 <header>
                     <h1>Thomas Caron</h1>
@@ -530,7 +537,7 @@
                     <div class="contact">
                         <span>📧 <a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
                         <span>📱 +33 6 08 36 73 00</span>
-                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank">linkedin.com/in/caronthomas</a></span>
+                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
                         <span>📍 Lens, France</span>
                     </div>
                 </header>
@@ -706,7 +713,8 @@
             document.getElementById('cv-en').classList.toggle('active', !isFr);
             document.getElementById('btn-fr').classList.toggle('active', isFr);
             document.getElementById('btn-en').classList.toggle('active', !isFr);
-            
+            document.getElementById('cv-fr').setAttribute('aria-hidden', !isFr);
+            document.getElementById('cv-en').setAttribute('aria-hidden', isFr);
             const btnPrint = document.getElementById('btn-print');
             btnPrint.innerText = isFr ? "🖨️ Imprimer" : "🖨️ Print";
 
