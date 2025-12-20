@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Thomas Caron</title>
+    <title>CV - Thomas Caron - Lead Développeur Drupal</title>
     <style>
-        @media print {
-            body { margin: 0; }
-            .page-break { page-break-before: always; }
-            .controls { display: none !important; }
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f5f5f5;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #f5f5f5;
-            padding: 20px;
+            background: var(--bg);
+            padding: clamp(10px, 3vw, 20px);
         }
+
+        /* Accessibilité */
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; z-index: 100; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
 
         .controls {
             max-width: 21cm;
@@ -31,751 +31,445 @@
             display: flex;
             gap: 10px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .tab-button {
             padding: 12px 24px;
             background: white;
-            border: 2px solid #3498db;
-            color: #3498db;
+            border: 2px solid var(--accent);
+            color: var(--accent);
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
         }
 
-        .tab-button:hover {
-            background: #ecf0f1;
-        }
+        .tab-button.active { background: var(--accent); color: white; }
 
-        .tab-button.active {
-            background: #3498db;
-            color: white;
-        }
-
-        .cv-version {
-            display: none;
-        }
-
-        .cv-version.active {
-            display: block;
-        }
-        
         .container {
             max-width: 21cm;
             margin: 0 auto;
             background: white;
-            padding: 40px 50px;
+            padding: clamp(20px, 5vw, 50px);
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-        
-        .header {
-            border-bottom: 3px solid #2c3e50;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            color: #2c3e50;
-            font-size: 32px;
-            margin-bottom: 5px;
-        }
-        
-        .header h2 {
-            color: #3498db;
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 15px;
-        }
-        
-        .contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
+
+        header { border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { font-size: clamp(24px, 5vw, 32px); color: var(--primary); }
+        h2 { font-size: clamp(18px, 4vw, 20px); color: var(--accent); font-weight: 400; margin-bottom: 15px; }
+
+        .contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 14px; color: #666; }
+
+        .section { margin-bottom: 30px; }
         .section-title {
-            color: #2c3e50;
-            font-size: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--primary); font-size: 20px; border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px; margin-bottom: 20px; text-transform: uppercase;
         }
+
+        .profile { background: #ecf0f1; padding: 20px; border-left: 4px solid var(--accent); margin-bottom: 30px; }
+
+        .job { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #eee; }
+        .job:last-child { border-bottom: none; }
+        .job-header { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: baseline; }
+        .job-title { font-size: 18px; color: var(--primary); font-weight: 600; }
+        .company { color: var(--accent); font-weight: 600; }
+        .job-meta { color: #7f8c8d; font-size: 14px; font-style: italic; width: 100%; margin-bottom: 10px; }
         
-        .profile {
-            background: #ecf0f1;
-            padding: 20px;
-            border-left: 4px solid #3498db;
-            margin-bottom: 30px;
-        }
-        
-        .profile p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .expertise {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .job {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .job:last-child {
-            border-bottom: none;
-        }
-        
-        .job-header {
-            margin-bottom: 12px;
-        }
-        
-        .job-title {
-            font-size: 18px;
-            color: #2c3e50;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .company {
-            color: #3498db;
-            font-weight: 600;
-        }
-        
-        .job-meta {
-            color: #7f8c8d;
-            font-size: 14px;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-        
-        .job-description {
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-        
-        .achievements {
-            margin-top: 12px;
-        }
-        
-        .achievement-category {
-            margin-bottom: 12px;
-        }
-        
-        .achievement-category h4 {
-            color: #2c3e50;
-            font-size: 15px;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .achievement-category ul {
-            margin-left: 20px;
-        }
-        
-        .achievement-category li {
-            margin-bottom: 5px;
-            color: #555;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .skill-category {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        
-        .skill-category h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .skill-category p {
-            color: #555;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-        
-        .education-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            border-left: 3px solid #3498db;
-        }
-        
-        .degree {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 16px;
-        }
-        
-        .school {
-            color: #555;
-            font-style: italic;
-        }
-        
-        .highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 5px;
-        }
-        
-        .highlight-icon {
-            color: #3498db;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-        
-        .highlight-text {
-            font-size: 14px;
-            color: #555;
-        }
-        
-        .languages {
-            display: flex;
-            gap: 30px;
-            margin-top: 15px;
-        }
-        
-        .language-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .language-flag {
-            font-size: 24px;
-        }
-        
-        .language-info strong {
-            color: #2c3e50;
-        }
-        
+        h4 { font-size: 15px; color: var(--primary); margin: 10px 0; }
+        ul { margin-left: 20px; }
+        li { margin-bottom: 5px; font-size: 14.5px; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-category { background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid var(--accent); }
+
+        .cv-version { display: none; }
+        .cv-version.active { display: block; }
+
         @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-                padding: 20px;
-            }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 0; width: 100%; }
+            .controls { display: none !important; }
+            .job { page-break-inside: avoid; }
         }
     </style>
 </head>
 <body>
-    <div class="controls">
+
+    <a href="#main" class="skip-link">Aller au contenu</a>
+
+    <nav class="controls">
         <button class="tab-button active" id="btn-fr" onclick="switchLanguage('fr')">🇫🇷 Français</button>
         <button class="tab-button" id="btn-en" onclick="switchLanguage('en')">🇬🇧 English</button>
-        <button class="tab-button" onclick="window.print()" style="margin-left: 20px;">🖨️ Imprimer / Print</button>
-    </div>
+        <button class="tab-button" id="btn-print" onclick="window.print()">🖨️ Imprimer</button>
+    </nav>
 
-    <!-- VERSION FRANÇAISE -->
-    <div class="cv-version active" id="cv-fr">
-        <div class="container">
-            <div class="header">
-                <h1>Thomas Caron</h1>
-                <h2>Lead Développeur Drupal / Développeur Drupal Senior</h2>
-                <div class="contact">
-                    <div class="contact-item"><span>📧</span><span>thomas.caron70@gmail.com</span></div>
-                    <div class="contact-item"><span>📱</span><span>06 08 36 73 00</span></div>
-                    <div class="contact-item"><span>🔗</span><span>linkedin.com/in/caronthomas</span></div>
-                    <div class="contact-item"><span>📍</span><span>Lens, France</span></div>
+    <main id="main">
+        <article class="cv-version active" id="cv-fr" lang="fr">
+            <div class="container">
+                <header>
+                    <h1>Thomas Caron</h1>
+                    <h2>Lead Développeur Drupal / Développeur Drupal Senior</h2>
+                    <div class="contact">
+                        <span>📧 thomas.caron70@gmail.com</span>
+                        <span>📱 06 08 36 73 00</span>
+                        <span>🔗 linkedin.com/in/caronthomas</span>
+                        <span>📍 Lens, France</span>
+                    </div>
+                </header>
+
+                <div class="profile">
+                    <p>Développeur Drupal Senior avec <strong>7+ ans d'expérience</strong> spécialisé dans l'architecture et le développement de solutions Drupal performantes (versions 7 à 11). Expert en modernisation de plateformes e-commerce Drupal, optimisation de performances et intégration de solutions techniques avancées. J'ai encadré plusieurs équipes de développeurs et formé mes collègues aux bonnes pratiques Drupal.</p>
                 </div>
-            </div>
 
-            <div class="profile">
-                <p>Développeur Drupal Senior avec <strong>7+ ans d'expérience</strong> spécialisé dans l'architecture et le développement de solutions Drupal performantes (versions 7 à 11). Expert en modernisation de plateformes e-commerce Drupal, optimisation de performances et intégration de solutions techniques avancées. J'ai encadré plusieurs équipes de développeurs et formé mes collègues aux bonnes pratiques Drupal.</p>
-                <p class="expertise"><strong>Expertises Drupal:</strong> Architecture Drupal • Montées de version (D9→D11) • Performance & Scalabilité • Développement Custom Modules • Intégration React/Decoupled</p>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Expérience Professionnelle</h3>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Développeur Senior & Référent Technique</div>
-                        <div class="company">Japan Experience</div>
-                        <div class="job-meta">Décembre 2023 - Présent (2 ans) • Full Remote - Paris</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environnement:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish
-                    </div>
-                    <div class="achievements">
-                        <div class="achievement-category">
-                            <h4>💼 Expertise Drupal & Modernisation</h4>
-                            <ul>
-                                <li><strong>Montée de version Drupal 9 → 11</strong> avec upgrade PHP 7 → 8</li>
-                                <li>Refonte architecture Drupal <strong>modulaire et scalable</strong></li>
-                                <li>Mise en place <strong>Redis et Varnish</strong></li>
-                                <li>Développement de <strong>modules custom Drupal</strong></li>
-                            </ul>
+                <section class="section">
+                    <h3 class="section-title">Expérience Professionnelle</h3>
+                    
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Développeur Senior & Référent Technique</span>
+                            <span class="company">Japan Experience</span>
+                            <span class="job-meta">Décembre 2023 - Présent (2 ans) • Full Remote - Paris</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>🛒 Développement E-commerce & React</h4>
-                            <ul>
-                                <li>Refonte du <strong>checkout en React (Decoupled)</strong></li>
-                                <li>Développement de nouveaux tunnels d'achat</li>
-                                <li>Intégration de la recherche de billets de train</li>
-                            </ul>
+                        <p><strong>Environnement:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish.</p>
+                        <h4>💼 Expertise Drupal & Modernisation</h4>
+                        <ul>
+                            <li><strong>Montée de version Drupal 9 → 11</strong> avec upgrade PHP 7 → 8.</li>
+                            <li>Refonte architecture Drupal <strong>modulaire et scalable</strong>.</li>
+                            <li>Mise en place <strong>Redis et Varnish</strong>.</li>
+                            <li>Développement de <strong>modules custom Drupal</strong>.</li>
+                            <li>Refonte complète du système de <strong>tracking</strong> et forte sensibilité <strong>SEO</strong> (Core Web Vitals).</li>
+                        </ul>
+                        <h4>🛒 Développement E-commerce & React</h4>
+                        <ul>
+                            <li>Refonte du <strong>checkout en React (Decoupled)</strong>.</li>
+                            <li>Refonte des <strong>pages produits</strong> basée sur un <strong>Design System</strong>.</li>
+                            <li>Développement de nouveaux tunnels d'achat et intégration de la recherche de billets de train.</li>
+                            <li>Collaboration étroite avec l'équipe Produit (UX/UI, Product Owners).</li>
+                        </ul>
+                        <h4>👥 Leadership Technique Drupal</h4>
+                        <ul>
+                            <li>Animation d'<strong>ateliers techniques Drupal</strong></li>
+                            <li>Réduction dette technique via <strong>PHPStan, Rector</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Ingénieur Logiciel Senior & Manager Technique</span>
+                            <span class="company">Groupe Luminess</span>
+                            <span class="job-meta">Janvier 2022 - Novembre 2023 (2 ans) • Lens</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>👥 Leadership Technique Drupal</h4>
-                            <ul>
-                                <li>Animation d'<strong>ateliers techniques Drupal</strong></li>
-                                <li>Réduction dette technique via <strong>PHPStan, Rector</strong></li>
-                            </ul>
+                        <p><strong>Environnement:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant.</p>
+                        <p><strong>Mission:</strong> Gestion et maintenance de multiples projets Drupal clients avec équipe technique distribuée.</p>
+                        <h4>🔧 Expertise Multi-versions Drupal</h4>
+                        <ul>
+                            <li>Gestion simultanée de projets sur <strong>Drupal 7, 8, 9 et 10</strong> avec maintien de la cohérence technique.</li>
+                            <li><strong>Migration d'une usine à sites Symfony 3 → 5</strong> avec mise à jour des dépendances et compatibilité.</li>
+                            <li>Développement de nouvelles fonctionnalités Drupal adaptées à chaque version.</li>
+                            <li>Correction de bugs et optimisations spécifiques à l'écosystème Drupal.</li>
+                        </ul>
+                        <h4>⚙️ Infrastructure & Stabilité</h4>
+                        <ul>
+                            <li>Mise en place et gestion des environnements de travail (développement, test, production).</li>
+                            <li>Surveillance de la sécurité et des performances des applications.</li>
+                            <li>Intervention rapide en cas d'incident pour maintenir les sites disponibles.</li>
+                        </ul>
+                        <h4>👥 Management d'Équipe</h4>
+                        <ul>
+                            <li>Encadrement de développeurs avec suivi des projets et des livrables.</li>
+                            <li>Organisation de revues de code pour maintenir la qualité et partager les connaissances.</li>
+                            <li>Coordination avec des équipes à distance pour garantir le respect des délais.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Ingénieur d'Études</span>
+                            <span class="company">Worldline Global (Euronext)</span>
+                            <span class="job-meta">Octobre 2019 - Décembre 2021 (2 ans) • Seclin</span>
                         </div>
+                        <p><strong>Mission:</strong> Développement et maintenance de sites web institutionnels Drupal pour Euronext (Bourse européenne).</p>
+                        <ul>
+                            <li>Développement de <strong>modules custom Drupal 8</strong> pour plusieurs sites institutionnels.</li>
+                            <li>Intégration de fonctionnalités complexes.</li>
+                            <li>Maintenance de plateformes Drupal critiques avec exigences de haute disponibilité.</li>
+                            <li>Optimisations de performances Drupal et correction de bugs.</li>
+                        </ul>
                     </div>
-                </div>
 
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Ingénieur Logiciel Senior & Manager Technique</div>
-                        <div class="company">Groupe Luminess</div>
-                        <div class="job-meta">Janvier 2022 - Novembre 2023 (2 ans) • Lens</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environnement:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant<br>
-                        <strong>Mission:</strong> Gestion et maintenance de multiples projets Drupal clients avec équipe technique distribuée.
-                    </div>
-                    <div class="achievements">
-                        <div class="achievement-category">
-                            <h4>🔧 Expertise Multi-versions Drupal</h4>
-                            <ul>
-                                <li>Gestion simultanée de projets sur <strong>Drupal 7, 8, 9 et 10</strong> avec maintien de la cohérence technique</li>
-                                <li><strong>Migration d'une usine à sites Symfony 3 → 5</strong> avec mise à jour des dépendances et compatibilité</li>
-                                <li>Développement de nouvelles fonctionnalités Drupal adaptées à chaque version</li>
-                                <li>Correction de bugs et optimisations spécifiques à l'écosystème Drupal</li>
-                            </ul>
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Consultant Développeur Web</span>
+                            <span class="company">ALTEN (mission chez Worldline)</span>
+                            <span class="job-meta">Octobre 2018 - Octobre 2019 (1 an) • Seclin</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>⚙️ Infrastructure & Stabilité</h4>
-                            <ul>
-                                <li>Mise en place et gestion des environnements de travail (développement, test, production)</li>
-                                <li>Surveillance de la sécurité et des performances des applications</li>
-                                <li>Intervention rapide en cas d'incident pour maintenir les sites disponibles</li>
-                            </ul>
+                        <ul>
+                            <li>Développement de sites web sous Drupal 8 pour les clients de Worldline.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Développeur Web en Alternance</span>
+                            <span class="company">Infitex SARL</span>
+                            <span class="job-meta">Septembre 2016 - Août 2018 (2 ans) • Lille</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>👥 Management d'Équipe</h4>
-                            <ul>
-                                <li>Encadrement de développeurs avec suivi des projets et des livrables</li>
-                                <li>Organisation de revues de code pour maintenir la qualité et partager les connaissances</li>
-                                <li>Coordination avec des équipes à distance pour garantir le respect des délais</li>
-                            </ul>
+                        <ul>
+                            <li>Développement d'une plateforme d'administration pour gérer plusieurs sites e-commerce.</li>
+                            <li>Création de sites web pour différents clients (e-commerce et vitrines).</li>
+                            <li>Développement de composants réutilisables.</li>
+                            <li>Intégration graphique et développement front-end.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Compétences</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>🎯 Expertise Drupal</h4>
+                            <p>Expert D7 à D11 • Architecture • Modules custom • API REST & Decoupled • Performance & Caching</p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Ingénieur d'Études</div>
-                        <div class="company">Worldline Global (Euronext)</div>
-                        <div class="job-meta">Octobre 2019 - Décembre 2021 (2 ans) • Seclin</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environnement:</strong> Drupal 8<br>
-                        <strong>Mission:</strong> Développement et maintenance de sites web institutionnels Drupal pour Euronext (Bourse européenne).
-                    </div>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Développement de <strong>modules custom Drupal 8</strong> pour plusieurs sites institutionnels</li>
-                        <li>Intégration de fonctionnalités complexes avec l'API Drupal</li>
-                        <li>Maintenance de plateformes Drupal critiques avec exigences de haute disponibilité</li>
-                        <li>Optimisations de performances Drupal et correction de bugs</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Consultant Développeur Web</div>
-                        <div class="company">ALTEN (mission chez Worldline)</div>
-                        <div class="job-meta">Octobre 2018 - Octobre 2019 (1 an) • Seclin</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environnement:</strong> Drupal 8<br>
-                        Mission en tant que consultant pour le développement de sites web Drupal.
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Développeur Web en Alternance</div>
-                        <div class="company">Infitex SARL</div>
-                        <div class="job-meta">Septembre 2016 - Août 2018 (2 ans) • Lille</div>
-                    </div>
-                    <div class="job-description">
-                        Apprentissage en entreprise parallèlement aux études universitaires
-                    </div>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Développement d'une plateforme d'administration pour gérer plusieurs sites e-commerce</li>
-                        <li>Création de sites web pour différents clients (e-commerce et vitrines)</li>
-                        <li>Développement de composants réutilisables pour accélérer la création de nouveaux sites</li>
-                        <li>Intégration graphique et développement front-end</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Compétences</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>🎯 Expertise Drupal</h4>
-                        <p>Expert D7 à D11 • Architecture • Modules custom • API REST & Decoupled • Performance & Caching</p>
-                    </div>
-                    <div class="skill-category">
-                        <h4>👥 Leadership</h4>
-                        <p>Encadrement d'équipes • Formation • Ateliers techniques • Revue de code</p>
-                    </div>
-                    <div class="skill-category">
-                        <h4>⚡ Performance & DevOps</h4>
-                        <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
-                    </div>
-                    <div class="skill-category">
-                        <h4>💻 Stack Technique</h4>
-                        <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Formation</h3>
-                <div class="education-item">
-                    <div class="degree">🎓 Master Informatique</div>
-                    <div class="school">Université du Littoral Côte d'Opale (2016-2018)</div>
-                </div>
-                <div class="education-item">
-                    <div class="degree">🎓 Licence Pro Services Informatiques</div>
-                    <div class="school">ISTV (2015-2016)</div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Atouts</h3>
-                <div class="highlights">
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>7+ ans Drupal</strong> (D7 à D11)</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Montées de version</strong> D9→11, Symfony 3→5</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Architecture avancée</strong> Decoupled (React)</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Lead technique</strong> & encadrement</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Performance expert</strong> Redis, Varnish</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>E-commerce</strong> intégrations complexes</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Langues</h3>
-                <div class="languages">
-                    <div class="language-item">
-                        <span class="language-flag">🇫🇷</span>
-                        <div class="language-info"><strong>Français:</strong> Langue maternelle</div>
-                    </div>
-                    <div class="language-item">
-                        <span class="language-flag">🇬🇧</span>
-                        <div class="language-info"><strong>Anglais:</strong> Professionnel</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VERSION ANGLAISE -->
-    <div class="cv-version" id="cv-en">
-        <div class="container">
-            <div class="header">
-                <h1>Thomas Caron</h1>
-                <h2>Lead Drupal Developer / Senior Drupal Developer</h2>
-                <div class="contact">
-                    <div class="contact-item"><span>📧</span><span>thomas.caron70@gmail.com</span></div>
-                    <div class="contact-item"><span>📱</span><span>+33 6 08 36 73 00</span></div>
-                    <div class="contact-item"><span>🔗</span><span>linkedin.com/in/caronthomas</span></div>
-                    <div class="contact-item"><span>📍</span><span>Lens, France</span></div>
-                </div>
-            </div>
-
-            <div class="profile">
-                <p>Senior Drupal Developer with <strong>7+ years of experience</strong> specializing in architecture and development of high-performance Drupal solutions (versions 7 to 11). Expert in modernizing Drupal e-commerce platforms, performance optimization, and integrating advanced technical solutions. I have led several development teams and trained colleagues in Drupal best practices.</p>
-                <p class="expertise"><strong>Drupal Expertise:</strong> Drupal Architecture • Version Upgrades (D9→D11) • Performance & Scalability • Custom Module Development • React/Decoupled Integration</p>
-            </div>
-
-            <div class="section">
-                <h3 class="section-title">Professional Experience</h3>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Senior Developer & Technical Lead</div>
-                        <div class="company">Japan Experience</div>
-                        <div class="job-meta">December 2023 - Present (2 years) • Full Remote - Paris</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environment:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish
-                    </div>
-                    <div class="achievements">
-                        <div class="achievement-category">
-                            <h4>💼 Drupal Expertise & Modernization</h4>
-                            <ul>
-                                <li><strong>Drupal 9 → 11 upgrade</strong> with PHP 7 → 8 migration</li>
-                                <li>Refactored Drupal architecture for <strong>modularity and scalability</strong></li>
-                                <li>Implemented <strong>Redis and Varnish</strong></li>
-                                <li>Developed <strong>custom Drupal modules</strong></li>
-                            </ul>
+                        <div class="skill-category">
+                            <h4>👥 Leadership</h4>
+                            <p>Encadrement d'équipes • Formation • Ateliers techniques • Revue de code</p>
                         </div>
-                        <div class="achievement-category">
-                            <h4>🛒 E-commerce Development & React</h4>
-                            <ul>
-                                <li>Rebuilt <strong>checkout in React (Decoupled)</strong></li>
-                                <li>Developed new custom purchase funnels</li>
-                                <li>Integrated train ticket search</li>
-                            </ul>
+                        <div class="skill-category">
+                            <h4>⚡ Performance & DevOps</h4>
+                            <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
                         </div>
-                        <div class="achievement-category">
-                            <h4>👥 Drupal Technical Leadership</h4>
-                            <ul>
-                                <li>Facilitated <strong>Drupal technical workshops</strong></li>
-                                <li>Reduced technical debt using <strong>PHPStan, Rector</strong></li>
-                            </ul>
+                        <div class="skill-category">
+                            <h4>💻 Stack Technique</h4>
+                            <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush</p>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Senior Software Engineer & Technical Manager</div>
-                        <div class="company">Groupe Luminess</div>
-                        <div class="job-meta">January 2022 - November 2023 (2 years) • Lens</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environment:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant<br>
-                        <strong>Mission:</strong> Management and maintenance of multiple client Drupal projects with distributed technical team.
-                    </div>
-                    <div class="achievements">
-                        <div class="achievement-category">
-                            <h4>🔧 Multi-version Drupal Expertise</h4>
-                            <ul>
-                                <li>Simultaneous management of projects on <strong>Drupal 7, 8, 9, and 10</strong> maintaining technical consistency</li>
-                                <li><strong>Symfony 3 → 5 site factory migration</strong> with dependency updates and compatibility</li>
-                                <li>Development of new Drupal features adapted to each version</li>
-                                <li>Bug fixes and optimizations specific to the Drupal ecosystem</li>
-                            </ul>
+                <section class="section">
+                    <h3 class="section-title">Points forts</h3>
+                    <div class="highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>7+ ans Drupal</strong> (D7 à D11)</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>⚙️ Infrastructure & Stability</h4>
-                            <ul>
-                                <li>Setup and management of work environments (development, testing, production)</li>
-                                <li>Security and performance monitoring of applications</li>
-                                <li>Rapid incident response to maintain site availability</li>
-                            </ul>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Montées de version</strong> D9→11, Symfony 3→5</span>
                         </div>
-                        <div class="achievement-category">
-                            <h4>👥 Team Management</h4>
-                            <ul>
-                                <li>Developer mentoring with project and deliverable tracking</li>
-                                <li>Organization of code reviews to maintain quality and share knowledge</li>
-                                <li>Coordination with remote teams to ensure deadline compliance</li>
-                            </ul>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Architecture avancée</strong> Decoupled (React)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Lead technique</strong> & encadrement</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>E-commerce</strong> intégrations complexes</span>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Software Engineer</div>
-                        <div class="company">Worldline Global (Euronext)</div>
-                        <div class="job-meta">October 2019 - December 2021 (2 years) • Seclin</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environment:</strong> Drupal 8<br>
-                        <strong>Mission:</strong> Development and maintenance of institutional Drupal websites for Euronext (European Stock Exchange).
-                    </div>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Development of <strong>custom Drupal 8 modules</strong> for multiple institutional sites</li>
-                        <li>Integration of complex features with Drupal API</li>
-                        <li>Maintenance of critical Drupal platforms with high availability requirements</li>
-                        <li>Drupal performance optimizations and bug fixes</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Web Developer Consultant</div>
-                        <div class="company">ALTEN (assignment at Worldline)</div>
-                        <div class="job-meta">October 2018 - October 2019 (1 year) • Seclin</div>
-                    </div>
-                    <div class="job-description">
-                        <strong>Environment:</strong> Drupal 8<br>
-                        Consulting mission for Drupal website development.
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <div class="job-title">Web Developer (Apprenticeship)</div>
-                        <div class="company">Infitex SARL</div>
-                        <div class="job-meta">September 2016 - August 2018 (2 years) • Lille</div>
-                    </div>
-                    <div class="job-description">
-                        Work-study program alongside university studies
-                    </div>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Development of an administration platform to manage multiple e-commerce sites</li>
-                        <li>Creation of websites for various clients (e-commerce and showcase sites)</li>
-                        <li>Development of reusable components to accelerate new site creation</li>
-                        <li>Graphic integration and front-end development</li>
-                    </ul>
-                </div>
+                <section class="section">
+                    <h3 class="section-title">Formation & Langues</h3>
+                    <p>🎓 <strong>Master Informatique</strong> - Université du Littoral (2018)</p>
+                    <p>🎓 <strong>Licence Pro Services Informatiques</strong> - ISTV (2016)</p>
+                    <p style="margin-top:10px">🇫🇷 Français (Maternel) | 🇬🇧 Anglais (Professionnel)</p>
+                </section>
             </div>
+        </article>
 
-            <div class="section">
-                <h3 class="section-title">Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>🎯 Drupal Expertise</h4>
-                        <p>Expert D7 to D11 • Architecture • Custom modules • REST API & Decoupled • Performance & Caching</p>
+        <article class="cv-version" id="cv-en" lang="en">
+            <div class="container">
+                <header>
+                    <h1>Thomas Caron</h1>
+                    <h2>Lead Drupal Developer / Senior Drupal Developer</h2>
+                    <div class="contact">
+                        <span>📧 thomas.caron70@gmail.com</span>
+                        <span>📱 +33 6 08 36 73 00</span>
+                        <span>🔗 linkedin.com/in/caronthomas</span>
+                        <span>📍 Lens, France</span>
                     </div>
-                    <div class="skill-category">
-                        <h4>👥 Leadership</h4>
-                        <p>Team management • Training • Technical workshops • Code review</p>
-                    </div>
-                    <div class="skill-category">
-                        <h4>⚡ Performance & DevOps</h4>
-                        <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
-                    </div>
-                    <div class="skill-category">
-                        <h4>💻 Technical Stack</h4>
-                        <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush</p>
-                    </div>
-                </div>
-            </div>
+                </header>
 
-            <div class="section">
-                <h3 class="section-title">Education</h3>
-                <div class="education-item">
-                    <div class="degree">🎓 Master's Degree in Computer Science</div>
-                    <div class="school">Université du Littoral Côte d'Opale (2016-2018)</div>
+                <div class="profile">
+                    <p>Senior Drupal Developer with <strong>7+ years of experience</strong> specializing in the architecture and development of high-performance Drupal solutions (versions 7 to 11). Expert in modernizing Drupal e-commerce platforms, performance optimization, and integrating advanced technical solutions. I have managed several development teams and trained colleagues in Drupal best practices.</p>
                 </div>
-                <div class="education-item">
-                    <div class="degree">🎓 Professional Bachelor's Degree</div>
-                    <div class="school">ISTV (2015-2016)</div>
-                </div>
-            </div>
 
-            <div class="section">
-                <h3 class="section-title">Key Strengths</h3>
-                <div class="highlights">
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>7+ years Drupal</strong> (D7 to D11)</span>
+                <section class="section">
+                    <h3 class="section-title">Professional Experience</h3>
+                    
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Senior Developer & Technical Lead</span>
+                            <span class="company">Japan Experience</span>
+                            <span class="job-meta">December 2023 - Present (2 years) • Full Remote - Paris</span>
+                        </div>
+                        <p><strong>Environment:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish.</p>
+                        <h4>💼 Drupal Expertise & Modernization</h4>
+                        <ul>
+                            <li><strong>Drupal Version Upgrade (9 → 11)</strong> including PHP upgrade (7 → 8).</li>
+                            <li>Redesign of a <strong>modular and scalable</strong> Drupal architecture.</li>
+                            <li>Implementation of <strong>Redis and Varnish</strong>.</li>
+                            <li>Development of <strong>custom Drupal modules</strong>.</li>
+                            <li>Complete overhaul of the <strong>tracking</strong> system with a strong focus on <strong>SEO</strong> (Core Web Vitals).</li>
+                        </ul>
+                        <h4>🛒 E-commerce Development & React</h4>
+                        <ul>
+                            <li>Redesign of the <strong>checkout process in React (Decoupled)</strong>.</li>
+                            <li>Redesign of <strong>product pages</strong> based on a <strong>Design System</strong>.</li>
+                            <li>Development of new purchase funnels and integration of train ticket search functionality.</li>
+                            <li>Close collaboration with the Product team (UX/UI, Product Owners).</li>
+                        </ul>
+                        <h4>👥 Drupal Technical Leadership</h4>
+                        <ul>
+                            <li>Facilitation of <strong>technical Drupal workshops</strong>.</li>
+                            <li>Reduction of technical debt using <strong>PHPStan and Rector</strong>.</li>
+                        </ul>
                     </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Version upgrades</strong> D9→11, Symfony 3→5</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Advanced architecture</strong> Decoupled (React)</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Technical lead</strong> & team management</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>Performance expert</strong> Redis, Varnish</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✅</span>
-                        <span class="highlight-text"><strong>E-commerce</strong> complex integrations</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="section">
-                <h3 class="section-title">Languages</h3>
-                <div class="languages">
-                    <div class="language-item">
-                        <span class="language-flag">🇫🇷</span>
-                        <div class="language-info"><strong>French:</strong> Native</div>
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Senior Software Engineer & Technical Manager</span>
+                            <span class="company">Luminess Group</span>
+                            <span class="job-meta">January 2022 - November 2023 (2 years) • Lens</span>
+                        </div>
+                        <p><strong>Environment:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant.</p>
+                        <p><strong>Mission:</strong> Management and maintenance of multiple Drupal client projects with a distributed technical team.</p>
+                        <h4>🔧 Multi-version Drupal Expertise</h4>
+                        <ul>
+                            <li>Simultaneous management of projects on <strong>Drupal 7, 8, 9, and 10</strong> while maintaining technical consistency.</li>
+                            <li><strong>Migration of a multi-site factory from Symfony 3 → 5</strong> including dependency updates and compatibility checks.</li>
+                            <li>Development of new Drupal features tailored to each version.</li>
+                            <li>Bug fixing and optimizations specific to the Drupal ecosystem.</li>
+                        </ul>
+                        <h4>⚙️ Infrastructure & Stability</h4>
+                        <ul>
+                            <li>Set up and management of working environments (development, testing, production).</li>
+                            <li>Security and performance monitoring of applications.</li>
+                            <li>Rapid incident response to maintain site availability.</li>
+                        </ul>
+                        <h4>👥 Team Management</h4>
+                        <ul>
+                            <li>Supervision of developers with project and deliverable tracking.</li>
+                            <li>Organization of code reviews to maintain quality and share knowledge.</li>
+                            <li>Coordination with remote teams to ensure deadlines are met.</li>
+                        </ul>
                     </div>
-                    <div class="language-item">
-                        <span class="language-flag">🇬🇧</span>
-                        <div class="language-info"><strong>English:</strong> Professional</div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Software Engineer</span>
+                            <span class="company">Worldline Global (Euronext)</span>
+                            <span class="job-meta">October 2019 - December 2021 (2 years) • Seclin</span>
+                        </div>
+                        <p><strong>Mission:</strong> Development and maintenance of Drupal institutional websites for Euronext (European Stock Exchange).</p>
+                        <ul>
+                            <li>Development of <strong>custom Drupal 8 modules</strong> for several institutional sites.</li>
+                            <li>Integration of complex functionalities.</li>
+                            <li>Maintenance of critical Drupal platforms with high availability requirements.</li>
+                            <li>Drupal performance optimizations and bug fixing.</li>
+                        </ul>
                     </div>
-                </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Web Developer Consultant</span>
+                            <span class="company">ALTEN (Consultancy at Worldline)</span>
+                            <span class="job-meta">October 2018 - October 2019 (1 year) • Seclin</span>
+                        </div>
+                        <ul>
+                            <li>Development of Drupal 8 websites for Worldline clients.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <span class="job-title">Apprentice Web Developer</span>
+                            <span class="company">Infitex SARL</span>
+                            <span class="job-meta">September 2016 - August 2018 (2 years) • Lille</span>
+                        </div>
+                        <ul>
+                            <li>Development of an administration platform to manage multiple e-commerce sites.</li>
+                            <li>Creation of websites for various clients (e-commerce and showcase sites).</li>
+                            <li>Development of reusable components.</li>
+                            <li>Graphic integration and front-end development.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>🎯 Drupal Expertise</h4>
+                            <p>Expert D7 to D11 • Architecture • Custom modules • REST API & Decoupled • Performance & Caching</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>👥 Leadership</h4>
+                            <p>Team management • Training • Technical workshops • Code review</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>⚡ Performance & DevOps</h4>
+                            <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>💻 Technical Stack</h4>
+                            <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Key Strengths</h3>
+                    <div class="highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>7+ years Drupal</strong> (D7 to D11)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Version upgrades</strong> D9→11, Symfony 3→5</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Advanced architecture</strong> Decoupled (React)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>Technical lead</strong> & team management</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-text"><strong>E-commerce</strong> complex integrations</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Education & Languages</h3>
+                    <p>🎓 <strong>Master’s Degree in Computer Science</strong> - Université du Littoral (2018)</p>
+                    <p>🎓 <strong>Professional License in IT Services</strong> - ISTV (2016)</p>
+                    <p style="margin-top:10px">🇫🇷 French (Native) | 🇬🇧 English (Professional)</p>
+                </section>
             </div>
-        </div>
-    </div>
+        </article>
+    </main>
 
     <script>
         function switchLanguage(lang) {
-            // Cache les deux versions
-            document.getElementById('cv-fr').classList.remove('active');
-            document.getElementById('cv-en').classList.remove('active');
+            const isFr = (lang === 'fr');
+            document.getElementById('cv-fr').classList.toggle('active', isFr);
+            document.getElementById('cv-en').classList.toggle('active', !isFr);
+            document.getElementById('btn-fr').classList.toggle('active', isFr);
+            document.getElementById('btn-en').classList.toggle('active', !isFr);
             
-            // Désactive tous les boutons
-            document.getElementById('btn-fr').classList.remove('active');
-            document.getElementById('btn-en').classList.remove('active');
-            
-            // Active la version sélectionnée
-            if (lang === 'fr') {
-                document.getElementById('cv-fr').classList.add('active');
-                document.getElementById('btn-fr').classList.add('active');
-            } else {
-                document.getElementById('cv-en').classList.add('active');
-                document.getElementById('btn-en').classList.add('active');
-            }
+            const btnPrint = document.getElementById('btn-print');
+            btnPrint.innerText = isFr ? "🖨️ Imprimer" : "🖨️ Print";
+
+            document.documentElement.lang = lang;
         }
     </script>
 </body>
