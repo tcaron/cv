@@ -262,8 +262,12 @@
         .cv-version { display: none; }
         .cv-version.active { display: block; }
 
+        /* Labels visibles uniquement à l'impression */
+        .print-label { display: none; }
+        .emoji { font-style: normal; }
+
         /* ===========================
-            IMPRESSION
+            IMPRESSION (ATS-FRIENDLY)
         =========================== */
         @media print {
             @page {
@@ -285,18 +289,34 @@
                 border-radius: 0 !important;
             }
 
+            /* ATS: Masquer les emojis, afficher les labels texte */
+            .emoji { display: none !important; }
+            .print-label {
+                display: inline !important;
+                font-style: normal !important;
+                font-weight: 600 !important;
+            }
+
             header {
                 margin: -20px -20px 20px -20px !important;
                 padding: 30px !important;
-                background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%) !important;
-                border-radius: 0 !important; /* Pour que le dégradé aille jusqu'au bord */
+                background: #0f4c75 !important;
+                border-radius: 0 !important;
                 display: block !important;
             }
 
             h1 { font-size: 24pt !important; color: white !important; }
             h2 { font-size: 14pt !important; color: rgba(255,255,255,0.9) !important; }
 
-            .contact span { color: white !important; font-size: 10pt !important; }
+            .contact {
+                display: block !important;
+            }
+            .contact span {
+                color: white !important;
+                font-size: 10pt !important;
+                display: block !important;
+                margin-bottom: 3px !important;
+            }
 
             .profile::before {
                 display: none !important;
@@ -326,16 +346,26 @@
             ul { margin-top: 5px !important; }
             li { font-size: 10pt !important; line-height: 1.3 !important; margin-bottom: 2px !important; }
 
+            /* ATS: Mise en page linéaire (1 colonne) */
             .skills-grid, .highlights {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
+                display: block !important;
             }
 
             .skill-category, .highlight-item {
                 break-inside: avoid !important;
                 padding: 10px !important;
+                margin-bottom: 10px !important;
             }
+
+            .highlight-item {
+                border-left: 3px solid #0f4c75 !important;
+            }
+
+            .highlight-icon { display: none !important; }
+
+            /* ATS: Cacher l'emoji du calendrier */
+            .job-meta::before { content: '' !important; }
+
             .controls, .skip-link {
                 display: none !important;
             }
@@ -357,17 +387,18 @@
             <div class="container">
                 <header>
                     <h1>Thomas Caron</h1>
-                    <h2>Lead Développeur Drupal / Développeur Drupal Senior</h2>
+                    <h2>Lead / Senior Développeur Drupal</h2>
                     <div class="contact">
-                        <span>📧 <a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
-                        <span>📱 06 08 36 73 00</span>
-                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
-                        <span>📍 Lens, France</span>
+                        <span><i class="emoji">📧</i><i class="print-label">Email : </i><a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
+                        <span><i class="emoji">📱</i><i class="print-label">Tél : </i>06 08 36 73 00</span>
+                        <span><i class="emoji">🔗</i><i class="print-label">LinkedIn : </i><a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
+                        <span><i class="emoji">📍</i><i class="print-label">Localisation : </i>Lens, France</span>
+                        <span><i class="emoji">💼</i><i class="print-label">Recherche : </i>CDI • Hybride ou Remote</span>
                     </div>
                 </header>
 
                 <div class="profile">
-                    <p>Développeur Drupal Senior avec <strong>7+ ans d'expérience</strong> spécialisé dans l'architecture et le développement de solutions Drupal performantes (versions 7 à 11). Expert en modernisation de plateformes e-commerce Drupal, optimisation de performances et intégration de solutions techniques avancées. J'ai encadré plusieurs équipes de développeurs et formé mes collègues aux bonnes pratiques Drupal.</p>
+                    <p>Développeur Senior avec <strong>7+ ans d'expérience</strong> spécialisé dans l'architecture et le développement de solutions web performantes. Expert Drupal (versions 7 à 11), solides compétences en <strong>Symfony</strong> et <strong>JavaScript/React</strong>. Expérience en modernisation de plateformes e-commerce, optimisation de performances et intégration de solutions techniques avancées. J'ai encadré plusieurs équipes de développeurs et formé mes collègues aux bonnes pratiques.</p>
                 </div>
 
                 <section class="section">
@@ -380,25 +411,27 @@
                             <span class="job-meta">Décembre 2023 - Présent (2 ans) • Full Remote - Paris</span>
                         </div>
                         <p><strong>Environnement:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish.</p>
-                        <h4>💼 Expertise Drupal & Modernisation</h4>
+                        <p><strong>Contexte:</strong> Plateforme e-commerce internationale (5 langues) spécialisée dans le tourisme au Japon.</p>
+                        <h4><i class="emoji">💼 </i>Expertise Drupal & Modernisation</h4>
                         <ul>
-                            <li><strong>Montée de version Drupal 9 → 11</strong> avec upgrade PHP 7 → 8.</li>
-                            <li>Refonte architecture Drupal <strong>modulaire et scalable</strong>.</li>
-                            <li>Mise en place <strong>Redis et Varnish</strong>.</li>
+                            <li><strong>Montée de version Drupal 9 → 11</strong> avec migration PHP 7 → 8.</li>
+                            <li>Refonte de l'architecture Drupal <strong>modulaire et scalable</strong>.</li>
+                            <li>Mise en place <strong>Redis et Varnish</strong> : charge CPU base de données réduite de <strong>90%</strong> (5% → 0.3%).</li>
                             <li>Développement de <strong>modules custom Drupal</strong>.</li>
-                            <li>Refonte complète du système de <strong>tracking</strong> et forte sensibilité <strong>SEO</strong> (Core Web Vitals).</li>
+                            <li>Refonte complète du système de <strong>tracking</strong> et forte sensibilité <strong>SEO</strong>.</li>
+                            <li><strong>Optimisation Core Web Vitals</strong> : score Lighthouse passé de rouge à <strong>98/100</strong>.</li>
                         </ul>
-                        <h4>🛒 Développement E-commerce & React</h4>
+                        <h4><i class="emoji">🛒 </i>Développement E-commerce & React</h4>
                         <ul>
                             <li>Refonte du <strong>checkout en React (Decoupled)</strong>.</li>
                             <li>Refonte des <strong>pages produits</strong> basée sur un <strong>Design System</strong>.</li>
-                            <li>Développement de nouveaux tunnels d'achat et intégration de la recherche de billets de train.</li>
+                            <li>Développement de nouveaux parcours d'achat et intégration de la recherche de billets de train.</li>
                             <li>Collaboration étroite avec l'équipe Produit (UX/UI, Product Owners).</li>
                         </ul>
-                        <h4>👥 Leadership Technique Drupal</h4>
+                        <h4><i class="emoji">👥 </i>Leadership Technique Drupal</h4>
                         <ul>
                             <li>Animation d'<strong>ateliers techniques Drupal</strong>.</li>
-                            <li>Réduction dette technique via <strong>PHPStan, Rector</strong>.</li>
+                            <li>Réduction de la dette technique via <strong>PHPStan, Rector</strong>.</li>
                         </ul>
                     </div>
 
@@ -410,20 +443,21 @@
                         </div>
                         <p><strong>Environnement:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant.</p>
                         <p><strong>Mission:</strong> Gestion et maintenance de multiples projets Drupal clients avec équipe technique distribuée.</p>
-                        <h4>🔧 Expertise Multi-versions Drupal</h4>
+                        <p><strong>Contexte:</strong> 10+ projets clients simultanés, encadrement d'une équipe de 2-3 développeurs (Roumanie).</p>
+                        <h4><i class="emoji">🔧 </i>Expertise Multi-versions Drupal</h4>
                         <ul>
                             <li>Gestion simultanée de projets sur <strong>Drupal 7, 8, 9 et 10</strong> avec maintien de la cohérence technique.</li>
-                            <li><strong>Migration d'une usine à sites Symfony 3 → 5</strong> avec mise à jour des dépendances et compatibilité.</li>
+                            <li><strong>Migration d'une usine à sites (site factory) Symfony 3 → 5</strong> avec mise à jour des dépendances et compatibilité.</li>
                             <li>Développement de nouvelles fonctionnalités Drupal adaptées à chaque version.</li>
                             <li>Correction de bugs et optimisations spécifiques à l'écosystème Drupal.</li>
                         </ul>
-                        <h4>⚙️ Infrastructure & Stabilité</h4>
+                        <h4><i class="emoji">⚙️ </i>Infrastructure & Stabilité</h4>
                         <ul>
                             <li>Mise en place et gestion des environnements de travail (développement, test, production).</li>
                             <li>Surveillance de la sécurité et des performances des applications.</li>
                             <li>Intervention rapide en cas d'incident pour maintenir les sites disponibles.</li>
                         </ul>
-                        <h4>👥 Management d'Équipe</h4>
+                        <h4><i class="emoji">👥 </i>Management d'Équipe</h4>
                         <ul>
                             <li>Encadrement de développeurs avec suivi des projets et des livrables.</li>
                             <li>Organisation de revues de code pour maintenir la qualité et partager les connaissances.</li>
@@ -438,6 +472,7 @@
                             <span class="job-meta">Octobre 2019 - Décembre 2021 (2 ans) • Seclin</span>
                         </div>
                         <p><strong>Mission:</strong> Développement et maintenance de sites web institutionnels Drupal pour Euronext (Bourse européenne).</p>
+                        <p><strong>Contexte:</strong> 2 sites institutionnels multilingues (6 langues) à forte criticité.</p>
                         <ul>
                             <li>Développement de <strong>modules custom Drupal 8</strong> pour plusieurs sites institutionnels.</li>
                             <li>Intégration de fonctionnalités complexes.</li>
@@ -476,20 +511,20 @@
                     <h3 class="section-title">Compétences</h3>
                     <div class="skills-grid">
                         <div class="skill-category">
-                            <h4>🎯 Expertise Drupal</h4>
+                            <h4><i class="emoji">🎯 </i>Expertise Drupal</h4>
                             <p>Expert D7 à D11 • Architecture • Modules custom • API REST & Decoupled • Performance & Caching</p>
                         </div>
                         <div class="skill-category">
-                            <h4>👥 Leadership</h4>
+                            <h4><i class="emoji">👥 </i>Leadership</h4>
                             <p>Encadrement d'équipes • Formation • Ateliers techniques • Revue de code</p>
                         </div>
                         <div class="skill-category">
-                            <h4>⚡ Performance & DevOps</h4>
+                            <h4><i class="emoji">⚡ </i>Performance & DevOps</h4>
                             <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
                         </div>
                         <div class="skill-category">
-                            <h4>💻 Stack Technique</h4>
-                            <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush • Solr</p>
+                            <h4><i class="emoji">💻 </i>Stack Technique</h4>
+                            <p>PHP 7/8 • Symfony • JavaScript • React • MySQL • Git • Composer • Drush • Solr</p>
                         </div>
                     </div>
                 </section>
@@ -498,23 +533,23 @@
                     <h3 class="section-title">Points forts</h3>
                     <div class="highlights">
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>7+ ans Drupal</strong> (D7 à D11)</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Montées de version</strong> D9→11, Symfony 3→5</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Architecture avancée</strong> Decoupled (React)</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Lead technique</strong> & encadrement</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>E-commerce</strong> intégrations complexes</span>
                         </div>
                     </div>
@@ -522,9 +557,14 @@
 
                 <section class="section">
                     <h3 class="section-title">Formation & Langues</h3>
-                    <p>🎓 <strong>Master Informatique</strong> - Université du Littoral (2018)</p>
-                    <p>🎓 <strong>Licence Pro Services Informatiques</strong> - ISTV (2016)</p>
-                    <p style="margin-top:10px">🇫🇷 Français (Maternel) | 🇬🇧 Anglais (Professionnel)</p>
+                    <p><i class="emoji">🎓 </i><strong>Master Informatique</strong> - Université du Littoral (2018)</p>
+                    <p><i class="emoji">🎓 </i><strong>Licence Pro Services Informatiques</strong> - ISTV (2016)</p>
+                    <p style="margin-top:10px"><i class="emoji">🇫🇷 </i>Français (Langue maternelle) | <i class="emoji">🇬🇧 </i>Anglais (Professionnel)</p>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Projets personnels</h3>
+                    <p><i class="emoji">🎮 </i>Développement de jeux vidéo (Godot, Phaser.js)</p>
                 </section>
             </div>
         </article>
@@ -533,17 +573,18 @@
             <div class="container">
                 <header>
                     <h1>Thomas Caron</h1>
-                    <h2>Lead Drupal Developer / Senior Drupal Developer</h2>
+                    <h2>Lead / Senior Drupal Developer</h2>
                     <div class="contact">
-                        <span>📧 <a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
-                        <span>📱 +33 6 08 36 73 00</span>
-                        <span>🔗 <a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
-                        <span>📍 Lens, France</span>
+                        <span><i class="emoji">📧</i><i class="print-label">Email: </i><a href="mailto:thomas.caron70@gmail.com">thomas.caron70@gmail.com</a></span>
+                        <span><i class="emoji">📱</i><i class="print-label">Phone: </i>+33 6 08 36 73 00</span>
+                        <span><i class="emoji">🔗</i><i class="print-label">LinkedIn: </i><a href="https://www.linkedin.com/in/caronthomas/" target="_blank" rel="noopener">linkedin.com/in/caronthomas</a></span>
+                        <span><i class="emoji">📍</i><i class="print-label">Location: </i>Lens, France</span>
+                        <span><i class="emoji">💼</i><i class="print-label">Looking for: </i>Permanent contract • Hybrid or Remote</span>
                     </div>
                 </header>
 
                 <div class="profile">
-                    <p>Senior Drupal Developer with <strong>7+ years of experience</strong> specializing in the architecture and development of high-performance Drupal solutions (versions 7 to 11). Expert in modernizing Drupal e-commerce platforms, performance optimization, and integrating advanced technical solutions. I have managed several development teams and trained colleagues in Drupal best practices.</p>
+                    <p>Senior Developer with <strong>7+ years of experience</strong> specializing in the architecture and development of high-performance web solutions. Drupal expert (versions 7 to 11), with strong skills in <strong>Symfony</strong> and <strong>JavaScript/React</strong>. Experienced in modernizing e-commerce platforms, performance optimization, and integrating advanced technical solutions. I have managed several development teams and trained colleagues in best practices.</p>
                 </div>
 
                 <section class="section">
@@ -556,22 +597,24 @@
                             <span class="job-meta">December 2023 - Present (2 years) • Full Remote - Paris</span>
                         </div>
                         <p><strong>Environment:</strong> Drupal 9/10/11, Docker, Kubernetes, GCP, PHP 8, React, Redis, Varnish.</p>
-                        <h4>💼 Drupal Expertise & Modernization</h4>
+                        <p><strong>Context:</strong> International e-commerce platform (5 languages) specialized in Japan tourism.</p>
+                        <h4><i class="emoji">💼 </i>Drupal Expertise & Modernization</h4>
                         <ul>
                             <li><strong>Drupal Version Upgrade (9 → 11)</strong> including PHP upgrade (7 → 8).</li>
-                            <li>Redesign of a <strong>modular and scalable</strong> Drupal architecture.</li>
-                            <li>Implementation of <strong>Redis and Varnish</strong>.</li>
+                            <li><strong>Modular and scalable</strong> Drupal architecture redesign.</li>
+                            <li>Implementation of <strong>Redis and Varnish</strong>: database CPU load reduced by <strong>90%</strong> (5% → 0.3%).</li>
                             <li>Development of <strong>custom Drupal modules</strong>.</li>
-                            <li>Complete overhaul of the <strong>tracking</strong> system with a strong focus on <strong>SEO</strong> (Core Web Vitals).</li>
+                            <li>Complete overhaul of the <strong>tracking</strong> system with a strong focus on <strong>SEO</strong>.</li>
+                            <li><strong>Core Web Vitals optimization</strong>: Lighthouse score improved from red to <strong>98/100</strong>.</li>
                         </ul>
-                        <h4>🛒 E-commerce Development & React</h4>
+                        <h4><i class="emoji">🛒 </i>E-commerce Development & React</h4>
                         <ul>
                             <li>Redesign of the <strong>checkout process in React (Decoupled)</strong>.</li>
                             <li>Redesign of <strong>product pages</strong> based on a <strong>Design System</strong>.</li>
                             <li>Development of new purchase funnels and integration of train ticket search functionality.</li>
                             <li>Close collaboration with the Product team (UX/UI, Product Owners).</li>
                         </ul>
-                        <h4>👥 Drupal Technical Leadership</h4>
+                        <h4><i class="emoji">👥 </i>Drupal Technical Leadership</h4>
                         <ul>
                             <li>Facilitation of <strong>technical Drupal workshops</strong>.</li>
                             <li>Reduction of technical debt using <strong>PHPStan and Rector</strong>.</li>
@@ -586,20 +629,21 @@
                         </div>
                         <p><strong>Environment:</strong> Drupal 7/8/9/10, Symfony 3/4/5, Puppet, Vagrant.</p>
                         <p><strong>Mission:</strong> Management and maintenance of multiple Drupal client projects with a distributed technical team.</p>
-                        <h4>🔧 Multi-version Drupal Expertise</h4>
+                        <p><strong>Context:</strong> 10+ simultaneous client projects, management of a 2-3 developer team (Romania).</p>
+                        <h4><i class="emoji">🔧 </i>Multi-version Drupal Expertise</h4>
                         <ul>
                             <li>Simultaneous management of projects on <strong>Drupal 7, 8, 9, and 10</strong> while maintaining technical consistency.</li>
-                            <li><strong>Migration of a multi-site factory from Symfony 3 → 5</strong> including dependency updates and compatibility checks.</li>
+                            <li><strong>Site factory migration from Symfony 3 → 5</strong> including dependency updates and compatibility checks.</li>
                             <li>Development of new Drupal features tailored to each version.</li>
                             <li>Bug fixing and optimizations specific to the Drupal ecosystem.</li>
                         </ul>
-                        <h4>⚙️ Infrastructure & Stability</h4>
+                        <h4><i class="emoji">⚙️ </i>Infrastructure & Stability</h4>
                         <ul>
                             <li>Set up and management of working environments (development, testing, production).</li>
                             <li>Security and performance monitoring of applications.</li>
                             <li>Rapid incident response to maintain site availability.</li>
                         </ul>
-                        <h4>👥 Team Management</h4>
+                        <h4><i class="emoji">👥 </i>Team Management</h4>
                         <ul>
                             <li>Supervision of developers with project and deliverable tracking.</li>
                             <li>Organization of code reviews to maintain quality and share knowledge.</li>
@@ -614,6 +658,7 @@
                             <span class="job-meta">October 2019 - December 2021 (2 years) • Seclin</span>
                         </div>
                         <p><strong>Mission:</strong> Development and maintenance of Drupal institutional websites for Euronext (European Stock Exchange).</p>
+                        <p><strong>Context:</strong> 2 multilingual institutional websites (6 languages) with high availability requirements.</p>
                         <ul>
                             <li>Development of <strong>custom Drupal 8 modules</strong> for several institutional sites.</li>
                             <li>Integration of complex functionalities.</li>
@@ -656,16 +701,16 @@
                             <p>Expert D7 to D11 • Architecture • Custom modules • REST API & Decoupled • Performance & Caching</p>
                         </div>
                         <div class="skill-category">
-                            <h4>👥 Leadership</h4>
+                            <h4><i class="emoji">👥 </i>Leadership</h4>
                             <p>Team management • Training • Technical workshops • Code review</p>
                         </div>
                         <div class="skill-category">
-                            <h4>⚡ Performance & DevOps</h4>
+                            <h4><i class="emoji">⚡ </i>Performance & DevOps</h4>
                             <p>Redis & Varnish • Docker & Kubernetes • CI/CD • Monitoring</p>
                         </div>
                         <div class="skill-category">
-                            <h4>💻 Technical Stack</h4>
-                            <p>PHP 7/8 • Symfony • React • MySQL • Git • Composer • Drush • Solr</p>
+                            <h4><i class="emoji">💻 </i>Technical Stack</h4>
+                            <p>PHP 7/8 • Symfony • JavaScript • React • MySQL • Git • Composer • Drush • Solr</p>
                         </div>
                     </div>
                 </section>
@@ -674,23 +719,23 @@
                     <h3 class="section-title">Key Strengths</h3>
                     <div class="highlights">
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>7+ years Drupal</strong> (D7 to D11)</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Version upgrades</strong> D9→11, Symfony 3→5</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Advanced architecture</strong> Decoupled (React)</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>Technical lead</strong> & team management</span>
                         </div>
                         <div class="highlight-item">
-                            <span class="highlight-icon">✅</span>
+                            <span class="highlight-icon emoji">✅</span>
                             <span class="highlight-text"><strong>E-commerce</strong> complex integrations</span>
                         </div>
                     </div>
@@ -698,9 +743,14 @@
 
                 <section class="section">
                     <h3 class="section-title">Education & Languages</h3>
-                    <p>🎓 <strong>Master’s Degree in Computer Science</strong> - Université du Littoral (2018)</p>
-                    <p>🎓 <strong>Professional License in IT Services</strong> - ISTV (2016)</p>
-                    <p style="margin-top:10px">🇫🇷 French (Native) | 🇬🇧 English (Professional)</p>
+                    <p><i class="emoji">🎓 </i><strong>Master's Degree in Computer Science</strong> - Université du Littoral (2018)</p>
+                    <p><i class="emoji">🎓 </i><strong>Bachelor's Degree in IT Services</strong> - ISTV (2016)</p>
+                    <p style="margin-top:10px"><i class="emoji">🇫🇷 </i>French (Native) | <i class="emoji">🇬🇧 </i>English (Professional)</p>
+                </section>
+
+                <section class="section">
+                    <h3 class="section-title">Personal Projects</h3>
+                    <p><i class="emoji">🎮 </i>Video game development (Godot, Phaser.js)</p>
                 </section>
             </div>
         </article>
